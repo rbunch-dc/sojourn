@@ -19,18 +19,20 @@
 	print mysql_error();
 	//this will print off our error, if one happens;
 
-print "<pre>";
-
 	while ($row = mysql_fetch_assoc($result)) { 
-		$rows[] = $row;
+		$section = $row["section"];
+		$rows[$section] = $row['content'];
 	}
 
-print_r($rows);
-exit;
+
+
 
 	// print "<pre>";
-	// print_r ($row);
-	$header_content = $row['content'];
+	// print_r ($rows);
+	// exit;
+
+
+	$header_content = $rows[0]['content'];
 
 ?>
 
@@ -104,14 +106,14 @@ exit;
 				<img src="http://pq.b5z.net/i/u/10099375/i/About_Sojourn_Header.jpg" class="esbIc esbIn" width="690" height="200">
 				<div class="body-text">
 
-					<?php print $header_content; ?>
+					<?php print $rows['header']; ?>
 				</div>
 				<div class="body-image">
 
 					<a href="http://www.myfoxatlanta.com/story/22039997/church-ropes-course-is-leap-of-faith" target="_blank">
 						<img src="http://pq.b5z.net/i/u/10099375/i/Fox_5_Video_of_Sojourn.png" class="esbIc esbId" width="200" height="100">
 					</a>
-					<div class="body-image-caption"><?php print $body_video_caption; ?></div>
+					<div class="body-image-caption"><?php print $rows['video_caption']; ?></div>
 
 				</div>
 			</div>
@@ -122,7 +124,7 @@ exit;
 				<div class="body-content-title">Location</div>
 
 				<div class="body-text">
-						<?php print $body1; ?>
+						<?php print $rows['body1']; ?>
 				</div>
 
 				<div class="body-image">
@@ -180,10 +182,7 @@ exit;
 		<div id="footer-content">
 			<div class="footer-inner left">
 				<ul>
-					<li class="first">9500 Medlock Bridge Rd.</li>
-					<li>Johns Creek, GA 30097</li>
-					<li>Phone: 678.405.2106</li>
-					<li class="last">Email: sojourn@perimeter.org</li>
+					<?php print $rows['address']; ?>
 				</ul>
 				<img alt="Association for Challenge Course Technology" src="http://q.b5z.net/i/u/10099375/i/acct_logo_footer.png">
 			</div>
