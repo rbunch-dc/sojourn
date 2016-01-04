@@ -1,0 +1,95 @@
+/* line 1, ../compass/sass/style.scss */
+body {
+  background-image: url("http://pq.b5z.net/zirw/317/i/u/10099375/i/darkgreenbg.png");
+  background-color: white;
+  color: #453925;
+  padding: 0;
+  margin: 0;
+}
+
+/* line 9, ../compass/sass/style.scss */
+#header #header-upper {
+  height: 80px;
+}
+/* line 11, ../compass/sass/style.scss */
+#header #header-upper .header-inner {
+  text-align: right;
+  max-width: 980px;
+  margin: auto;
+}
+/* line 15, ../compass/sass/style.scss */
+#header #header-upper .header-inner a {
+  display: inline-block;
+  line-height: 32px;
+  vertical-align: middle;
+  text-decoration: none;
+  color: #a7b29b;
+  text-align: left;
+  padding-left: 0px;
+  padding-right: 2px;
+  padding-top: 20px;
+}
+/* line 29, ../compass/sass/style.scss */
+#header #header-lower {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  background-image: url(../images/tanbg.png);
+  background-color: #E2E4DB;
+}
+/* line 34, ../compass/sass/style.scss */
+#header #header-lower .header-inner {
+  max-width: 980px;
+  margin: auto;
+}
+/* line 37, ../compass/sass/style.scss */
+#header #header-lower .header-inner #menu {
+  float: right;
+}
+/* line 40, ../compass/sass/style.scss */
+#header #header-lower .header-inner #menu ul li {
+  float: left;
+  list-style-type: none;
+  padding: 12px;
+  margin-top: 20px;
+}
+/* line 45, ../compass/sass/style.scss */
+#header #header-lower .header-inner #menu ul li a {
+  font-weight: normal;
+  font-size: 14pt;
+  text-decoration: none;
+  color: #675538;
+  font-family: Ubuntu, sans-serif;
+  margin: 0px;
+}
+
+/* line 60, ../compass/sass/style.scss */
+#content {
+  max-width: 980px;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #ffffff;
+}
+/* line 65, ../compass/sass/style.scss */
+#content #body-header {
+  font-weight: bold;
+  font-size: 24pt;
+  color: #516d21;
+  font-family: sans-serif;
+  margin-bottom: 8px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dfdfdf;
+}
+/* line 73, ../compass/sass/style.scss */
+#content #body-header div {
+  display: inline-block;
+}
+/* line 77, ../compass/sass/style.scss */
+#content #body-content {
+  padding-top: 10px;
+}
+/* line 82, ../compass/sass/style.scss */
+#content .body-text {
+  font-size: 11pt;
+  line-height: 1.4;
+  font-family: Tahoma, sans-serif;
+}
