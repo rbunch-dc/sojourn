@@ -12,22 +12,25 @@
 	    die ('Can\'t use phpland : ' . mysql_error());
 	}
 
-	$query = "SELECT * FROM about WHERE section = 'header'";
+	$query = "SELECT * FROM about";
 	//We have a var called query with our query in it
 	$result = mysql_query($query);
 	//We now have a mysql object called result!
 	print mysql_error();
 	//this will print off our error, if one happens;
 
-	$row = mysql_fetch_assoc($result);
+print "<pre>";
+
+	while ($row = mysql_fetch_assoc($result)) { 
+		$rows[] = $row;
+	}
+
+print_r($rows);
+exit;
+
 	// print "<pre>";
 	// print_r ($row);
 	$header_content = $row['content'];
-
-	$first_body_text = 'Our lives take us on many journeys; with our careers, families, sports teams, schools, etc...  At Sojourn, our desire is to provide a safe and fun environment to Sojourn from these life journeys for a brief period of time in order to reflect, gain new insight, and enter back into our journeys with new perspective.';
-	$body_video_caption = 'Check out this video about us on Fox 5';	
-
-
 
 ?>
 
@@ -119,7 +122,7 @@
 				<div class="body-content-title">Location</div>
 
 				<div class="body-text">
-					Most Sojourn programming takes place on the property of Perimeter church in John's Creek, GA. The property is located at the corner of Old Alabama Rd. and Hwy 141/Medlock Bridge Rd. 
+						<?php print $body1; ?>
 				</div>
 
 				<div class="body-image">
