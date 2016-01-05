@@ -202,3 +202,10 @@ body {
 #footer #footer-content .footer-inner.right {
   float: right;
 }
+
+/* line 186, ../compass/sass/style.scss */
+.container {
+  background: white;
+  margin-top: 60px;
+  padding: 50px;
+}
