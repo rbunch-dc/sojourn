@@ -1,3 +1,35 @@
+<?php
+
+	$link = mysql_connect('127.0.0.1', 'phpland', 'x');
+	if (!$link) {
+	    die('Not connected : ' . mysql_error());
+	}
+
+	// make phpland the current db
+	$db_selected = mysql_select_db('phpland', $link);
+	if (!$db_selected) {
+	    die ('Can\'t use phpland : ' . mysql_error());
+	}
+
+
+	$query = "SELECT * FROM about";
+	$result = mysql_query($query);
+
+	$row_count = mysql_num_rows($result);
+
+	while ($row = mysql_fetch_assoc($result)) { 
+		$rows[] = $row;
+	}
+
+	// print "<pre>";
+	// print_r($rows);
+	// exit;
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,19 +42,25 @@
 </head>
 <body>
 
+
+
+<script>
+	$('#container').each(function(){
+		alert("Here is a container!!");
+	});
+</script>
+
 	<div class="container">
 		<div class="row">
 			<div class="dropdown">
-				<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Select Area
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-					<li><a href="#">Header</a></li>
-					<li><a href="#">Location</a></li>
-					<li><a href="#">Pricing</a></li>
-					<li><a href="#">ACCT</a></li>
-				</ul>
+
+				<select class="form-control">
+				<?php
+					foreach($rows as $row){
+						print '<option>'.$row['section'].'</option>';
+					}
+				?>				
+				 </select>				
 			</div>
 		</div>
 		<div class="row B">
