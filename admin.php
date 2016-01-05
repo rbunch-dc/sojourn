@@ -11,20 +11,12 @@
 	    die ('Can\'t use phpland : ' . mysql_error());
 	}
 
-
 	$query = "SELECT * FROM about";
 	$result = mysql_query($query);
-
-	$row_count = mysql_num_rows($result);
 
 	while ($row = mysql_fetch_assoc($result)) { 
 		$rows[] = $row;
 	}
-
-	// print "<pre>";
-	// print_r($rows);
-	// exit;
-
 
 ?>
 
@@ -39,15 +31,58 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+
+  // $.ajax({
+  //   type: "POST", 
+  //   url: "response.php", 
+  //   data:{
+  //     for_data:"GetAllTeamList",
+  //     adminid: adminid
+  //     },
+  //   success:function(response){       
+  //     var obj = JSON.parse(response);
+  //     $('#my-team').val(obj.hometeam.team_name);
+  //     $('#my-team-id').val(obj.hometeam.team_id);     
+  //     $('#p_teamname_againsts').html(obj.awayteam);
+  //     $('#p_teamname_againsts1').html(obj.awayteam);      
+  //     $.ajax({
+  //       type: "POST", 
+  //       url: "response.php", 
+  //       data:{
+  //         for_data:"GetPlayerNameTeamId",
+  //         teamid:obj.hometeam.team_id,
+  //       },
+  //       success:function(response){
+  //         $('#playername_for').html(response);
+  //         $('#b_player_for').html(response);                          
+  //       },
+  //     });   
+  //   }
+  // });
+
+	</script>
+
 </head>
 <body>
 
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('.form-control').change(function(){
+			var content = $(this).val();
+			var url = 'http://local-phpland.com/admin_api.php?page=about&section='+content;
+
+			console.log(url);
 
 
-<script>
-	$('#container').each(function(){
-		alert("Here is a container!!");
+			$.getJSON(url, function(result){
+				$('#content').val(result.content);
+			});
+		});
 	});
+
 </script>
 
 	<div class="container">
@@ -57,7 +92,7 @@
 				<select class="form-control">
 				<?php
 					foreach($rows as $row){
-						print '<option>'.$row['section'].'</option>';
+						print '<option value="'.$row['section'].'">'.$row['section'].'</option>';
 					}
 				?>				
 				 </select>				
