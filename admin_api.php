@@ -11,7 +11,6 @@
 	    die ('Can\'t use phpland : ' . mysql_error());
 	}
 
-
 	$query = "SELECT * FROM about WHERE section='".$_GET['section']."'";
 	$result = mysql_query($query);
 

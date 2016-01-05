@@ -12,7 +12,7 @@
 	}
 
 	$query = "SELECT * FROM about";
-	$result = mysql_query($query);
+	$result = mysql_query('SELECT * FROM about');
 
 	while ($row = mysql_fetch_assoc($result)) { 
 		$rows[] = $row;
@@ -37,26 +37,24 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-
+		updateTextArea($('.form-control').val());
 		$('.form-control').change(function(){
-			var content = $(this).val();
-			var url = 'http://local-phpland.com/admin_api.php?page=about&section='+content;
-
-			console.log(url);
-
-
-			$.getJSON(url, function(result){
-				$('#content').val(result.content);
-			});
+			updateTextArea($(this).val());
 		});
 	});
+
+	function updateTextArea(section){
+		var url = 'http://local-phpland.com/admin_api.php?page=about&section='+section;
+		$.getJSON(url, function(result){
+			$('#content').val(result.content);
+		});
+}
 
 </script>
 
 	<div class="container">
 		<div class="row">
 			<div class="dropdown">
-
 				<select class="form-control">
 				<?php
 					foreach($rows as $row){
