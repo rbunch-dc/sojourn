@@ -12,18 +12,12 @@
 	}
 
 	if($_POST){
-		// print "<pre>";
-		// print_r($_POST);
-		// exit;
-
 		$query = "UPDATE about SET content = '" . $_POST['content'] . "' WHERE section = '" . $_POST['section'] . "'";
-
-
 		$update = mysql_query($query);
 		if(mysql_error()){
 			print mysql_error();
 		}else{
-			print "success!!";
+			header('Location: http://local-phpland.com/admin.php?result=success');
 		}
 
 	}

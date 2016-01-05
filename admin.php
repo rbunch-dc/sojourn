@@ -54,6 +54,12 @@
 </script>
 
 	<div class="container">
+
+		<?php if ($_GET['result']){
+			print '<h1>'.$_GET['result'].'</h1>';
+		} 
+		?>
+
 		<form action="http://local-phpland.com/admin_api.php" method="post">
 			<div class="row">
 				<div class="dropdown">
