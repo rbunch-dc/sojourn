@@ -11,18 +11,37 @@
 	    die ('Can\'t use phpland : ' . mysql_error());
 	}
 
-	$query = "SELECT * FROM about WHERE section='".$_GET['section']."'";
-	$result = mysql_query($query);
+	if($_POST){
+		// print "<pre>";
+		// print_r($_POST);
+		// exit;
 
-	$row = mysql_fetch_assoc($result);
+		$query = "UPDATE about SET content = '" . $_POST['content'] . "' WHERE section = '" . $_POST['section'] . "'";
 
-	if($row){
-		print json_encode($row);
-	}else{
-		print json_encode('error!');
+
+		$update = mysql_query($query);
+		if(mysql_error()){
+			print mysql_error();
+		}else{
+			print "success!!";
+		}
+
 	}
 
-exit;
+	if($_GET){
 
+		$query = "SELECT * FROM about WHERE section='".$_GET['section']."'";
+		$result = mysql_query($query);
+
+		$row = mysql_fetch_assoc($result);
+
+		if($row){
+			print json_encode($row);
+		}else{
+			print json_encode('error!');
+		}
+
+		exit;
+	}
 
 ?>

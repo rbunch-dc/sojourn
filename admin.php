@@ -37,14 +37,15 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		updateTextArea($('.form-control').val());
-		$('.form-control').change(function(){
+		updateTextArea($('#section').val());
+		$('#section').change(function(){
 			updateTextArea($(this).val());
 		});
 	});
 
 	function updateTextArea(section){
 		var url = 'http://local-phpland.com/admin_api.php?page=about&section='+section;
+		console.log(url);
 		$.getJSON(url, function(result){
 			$('#content').val(result.content);
 		});
@@ -53,24 +54,26 @@
 </script>
 
 	<div class="container">
-		<div class="row">
-			<div class="dropdown">
-				<select class="form-control">
-				<?php
-					foreach($rows as $row){
-						print '<option value="'.$row['section'].'">'.$row['section'].'</option>';
-					}
-				?>				
-				 </select>				
-			</div>
-		</div>
-		<div class="row B">
-			<div class="form-group">
-  				<label for="comment">Enter Content</label>
-  				<textarea class="form-control" rows="7" id="content"></textarea>
+		<form action="http://local-phpland.com/admin_api.php" method="post">
+			<div class="row">
+				<div class="dropdown">
+					<select class="form-control" id="section" name="section">
+						<?php
+							foreach($rows as $row){
+								print '<option value="'.$row['section'].'">'.$row['section'].'</option>';
+							}
+						?>				
+					</select>				
 				</div>
-		</div>
-		<button class="btn btn-lg" type="submit">Submit</button>
+			</div>
+			<div class="row B">
+				<div class="form-group">
+	  				<label for="comment">Enter Content</label>
+	  				<textarea name="content" class="form-control" rows="7" id="content"></textarea>
+				</div>
+			</div>
+			<button class="btn btn-lg" type="submit">Submit</button>
+		</form>
 	</div>
 
 </body>
