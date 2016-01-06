@@ -17,7 +17,9 @@
 		$result = mysql_query($query);
 		if(mysql_num_rows($result) == 1){
 			//We have a match!!
-
+			//Set up a session var
+			$_SESSION['username'] = $_POST['email'];
+			header('Location: /admin.php');
 		}else{
 			//we do not have a match. Goodbye.
 			header('Location: http://local-phpland.com/login.php?result=failure');

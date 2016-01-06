@@ -52,6 +52,10 @@
 
 	<div class="container">
 
+	<div id="logout"><a href="index.php?logout=true">Logout</a></div>
+
+	<h1>Welcome, <?php print $_SESSION['username']; ?></h1>
+
 		<?php if ($_GET['result']){
 			print '<h1>'.$_GET['result'].'</h1>';
 		} 

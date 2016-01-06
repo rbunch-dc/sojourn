@@ -2,6 +2,10 @@
 
 	include 'inc/db_connect.php';
 
+	if($_GET['logout'] == 'true'){
+		session_destroy();
+	}
+
 	$query = "SELECT * FROM about";
 	//We have a var called query with our query in it
 	$result = mysql_query($query);
