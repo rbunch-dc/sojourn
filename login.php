@@ -3,15 +3,15 @@
 	include 'inc/db_connect.php';
 
 	if(isset($_POST['email'])){
-		// print $_POST['email'];
-		// print $_POST['password'];
+
+		$hashed_password = md5($_POST['password'] . "thisisalittlesalt");
 
 		//USER SUBMITTED SOMETHING.
 		//NOW WHAT?
 		//Check to see if this user is in the DB!!
 		$query = "SELECT * FROM users 
 			WHERE email = '" . $_POST['email']."' 
-				AND password = '".$_POST['password']."' 
+				AND password = '".$hashed_password."' 
 				AND access_level = 1";
 
 		$result = mysql_query($query);
