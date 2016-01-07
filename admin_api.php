@@ -2,6 +2,7 @@
 
 	include 'inc/db_connect.php';
 
+
 	if($_POST){
 		if(isset($_POST['section'])){
 

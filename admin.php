@@ -52,35 +52,93 @@
 
 	<div class="container">
 
-	<div id="logout"><a href="index.php?logout=true">Logout</a></div>
+		<div id="logout"><a href="index.php?logout=true">Logout</a></div>
 
-	<h1>Welcome, <?php print $_SESSION['username']; ?></h1>
+		<h1>Welcome, <?php print $_SESSION['username']; ?></h1>
+
+
+		<div class="panel-group" id="accordion">
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+		        Add new section</a>
+		      </h4>
+		    </div>
+		    <div id="collapse1" class="panel-collapse collapse in">
+		      <div class="panel-body">
+
+
+		      		This is where our Add stuff will go.
+
+		      </div>
+		    </div>
+		  </div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+		        Delete Section</a>
+		      </h4>
+		    </div>
+		    <div id="collapse2" class="panel-collapse collapse">
+		      <div class="panel-body">
+
+		      		This is where our Delete stuff will go.
+
+		      </div>
+		    </div>
+		  </div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+		        Update Section</a>
+		      </h4>
+		    </div>
+		    <div id="collapse3" class="panel-collapse collapse">
+		      <div class="panel-body">
+
+				<form action="http://local-phpland.com/admin_api.php" method="post">
+					<div class="row">
+						<div class="dropdown">
+							<select class="form-control" id="section" name="section">
+								<?php
+									foreach($rows as $row){
+										print '<option value="'.$row['section'].'">'.$row['section'].'</option>';
+									}
+								?>				
+							</select>				
+						</div>
+					</div>
+					<div class="row B">
+						<div class="form-group">
+			  				<label for="comment">Enter Content</label>
+			  				<textarea name="content" class="form-control" rows="7" id="content"></textarea>
+						</div>
+					</div>
+					<button class="btn btn-lg" type="submit">Submit</button>
+				</form>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
 
 		<?php if ($_GET['result']){
 			print '<h1>'.$_GET['result'].'</h1>';
 		} 
 		?>
 
-		<form action="http://local-phpland.com/admin_api.php" method="post">
-			<div class="row">
-				<div class="dropdown">
-					<select class="form-control" id="section" name="section">
-						<?php
-							foreach($rows as $row){
-								print '<option value="'.$row['section'].'">'.$row['section'].'</option>';
-							}
-						?>				
-					</select>				
-				</div>
-			</div>
-			<div class="row B">
-				<div class="form-group">
-	  				<label for="comment">Enter Content</label>
-	  				<textarea name="content" class="form-control" rows="7" id="content"></textarea>
-				</div>
-			</div>
-			<button class="btn btn-lg" type="submit">Submit</button>
+
+
+<!-- 		<form action="admin_api.php" method="post" enctype="multipart/form-data">
+		    Select image to upload:
+		    <input type="file" name="fileToUpload" id="fileToUpload">
+		    <input type="submit" value="Upload Image" name="submit">
 		</form>
+ -->
+
 	</div>
 
 </body>

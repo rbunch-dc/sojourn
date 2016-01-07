@@ -2,6 +2,22 @@
 
 	include 'inc/db_connect.php';
 
+
+// for(i=0; i<count($dictory); i++){
+// 	if(md5($dictory[$i]) == 'whatever your userpassword in hash format is'){
+// 		print "I got you. $dictory[$i] is your password. Eat it loser.";
+// 	}
+// }
+
+// print md5('x');
+// print "<br />";
+// print md5('xthisisalittlesalt');
+// print "<br />";
+
+// print md5(md5('xthisisalittlesalt').'gofalcons!!');
+// exit;
+
+
 	if(isset($_POST['email'])){
 
 		$hashed_password = md5($_POST['password'] . "thisisalittlesalt");
