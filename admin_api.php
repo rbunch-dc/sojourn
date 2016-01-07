@@ -3,7 +3,36 @@
 	include 'inc/db_connect.php';
 
 
-	if($_POST){
+	print_r($_FILES);
+	exit;
+
+
+	$target_file = 'uploads/' . $_FILES['fileToUpload']['name'];
+	$temp_file = $_FILES['fileToUpload']['tmp_name'];
+
+
+	if(is_uploaded_file($temp_file)){
+		if(move_uploaded_file($temp_file, $target_file)){
+			print "Successfully uploaded image. It is at " . $target_file;
+		}else{
+			print "failed to move image.";
+		}
+	}
+
+	if($_POST['crud_task'] == "addnew"){
+		$section = addslashes($_POST['section']);
+		$content = addslashes($_POST['content']);
+		$query = "INSERT INTO about (section, content) VALUES ('".$section."', '".$content."')";
+
+		$result = mysql_query($query);
+		if(mysql_error()){
+			print mysql_error();
+		}else{
+			header('Location: http://local-phpland.com/admin.php?result=success');
+		}
+	}
+
+	if($_POST['crud_task'] == "update"){
 		if(isset($_POST['section'])){
 
 			$query = "UPDATE about SET content = '" . $_POST['content'] . "' WHERE section = '" . $_POST['section'] . "'";
@@ -13,11 +42,19 @@
 			}else{
 				header('Location: http://local-phpland.com/admin.php?result=success');
 			}
-		}elseif($_POST['delete']){
-			$query = "DELETE FROM about WHERE id = " . $_POST['id'];
-		}elseif($_POST['addnew']){
-			$query = "INSERT INTO about ('section', 'content') VALUES ('".$_POST['section']."', '".$_POST['content']."')";
 		}
+	}
+
+	if($_GET['crud_task']== "delete"){
+		//Delete the row!!!!
+		$query = "DELETE FROM about WHERE id = " . $_GET['id'];
+		$result = mysql_query($query);
+		if(mysql_error()){
+			print mysql_error();
+		}else{
+			header('Location: http://local-phpland.com/admin.php?result=success');
+		}
+
 	}
 
 	if($_GET){

@@ -2,6 +2,8 @@
 
 	include 'inc/db_connect.php';
 
+	if($_SESSION['username'] == "")
+
 	if(!isset($_SESSION['username'])){
 		//Goodbye.
 		header('Location: http://local-phpland.com/');
@@ -65,12 +67,24 @@
 		        Add new section</a>
 		      </h4>
 		    </div>
-		    <div id="collapse1" class="panel-collapse collapse in">
+		    <div id="collapse1" class="panel-collapse collapse">
 		      <div class="panel-body">
 
-
-		      		This is where our Add stuff will go.
-
+				<form action="http://local-phpland.com/admin_api.php" method="post" name="addnew">
+					<div class="row">
+						<div class="dropdown">
+							<input class="form-control" id="add-section" name="section" placeholder="Please enter the section name">
+						</div>
+					</div>
+					<div class="row B">
+						<div class="form-group">
+			  				<label for="comment">Enter Content</label>
+			  				<textarea name="content" class="form-control" rows="7" id="add-content"></textarea>
+						</div>
+					</div>
+						<input type="hidden" name="crud_task" value="addnew">
+					<button class="btn btn-lg" type="submit">Submit</button>
+				</form>
 		      </div>
 		    </div>
 		  </div>
@@ -84,8 +98,11 @@
 		    <div id="collapse2" class="panel-collapse collapse">
 		      <div class="panel-body">
 
-		      		This is where our Delete stuff will go.
-
+				<?php foreach($rows as $row): ?>
+					<div class="btn btn-danger btn-lg">
+						<a href="admin_api.php?id=<?php print $row['id'];?>&crud_task=delete"><?php print $row['section']; ?></a>
+					</div>
+				<?php endforeach; ?>			      	
 		      </div>
 		    </div>
 		  </div>
@@ -118,7 +135,29 @@
 						</div>
 					</div>
 					<button class="btn btn-lg" type="submit">Submit</button>
+					<input type="hidden" name="crud_task" value="update">
 				</form>
+		      </div>
+		    </div>
+		  </div>
+
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+		        Upload File</a>
+		      </h4>
+		    </div>
+		    <div id="collapse4" class="panel-collapse collapse">
+		      <div class="panel-body">
+
+				<form action="admin_api.php" method="post" enctype="multipart/form-data">
+				    Select image to upload:
+				    <input type="file" name="fileToUpload" id="fileToUpload">
+				    <input type="submit" value="Upload Image" name="submit">
+				    
+				</form>
+
 		      </div>
 		    </div>
 		  </div>
@@ -129,17 +168,12 @@
 			print '<h1>'.$_GET['result'].'</h1>';
 		} 
 		?>
-
-
-
-<!-- 		<form action="admin_api.php" method="post" enctype="multipart/form-data">
-		    Select image to upload:
-		    <input type="file" name="fileToUpload" id="fileToUpload">
-		    <input type="submit" value="Upload Image" name="submit">
-		</form>
- -->
-
 	</div>
 
 </body>
 </html>
+
+
+
+
+
