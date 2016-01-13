@@ -1,0 +1,9 @@
+This is a simple CMS app built in PHP and MySQL. It uses basic md5 authentication and MeekroDB for the DB abstraction layer.
+
+See screenshot of the login page:
+<img src="">
+
+See screenshot of the admin page:
+<img src="">
+
+If the user is not logged in and they try to access admin.php, they will be routed to the index.php page.
